@@ -4,9 +4,15 @@ const Sequelize = require('sequelize');
 // models까지의 경로를 읽고 있는데, json파일까지 일고 싶어서 추가하는 내용 //[]는 개발환경을 돌리고 있기 때문에 development를 작성한것,(개발환경은 아마 json에서 development만 살려둬서 그런것 같다.)
 // const config = require(__dirname + '/../config/config.js')["development"]; //(객체)의 [키]를 가져오기 위해서임
 // console.log("config: ",config)
+
 let config = require(__dirname + '/../config/config.js'); //(객체)의 [키]를 가져오기 위해서임
-console.log(config)
-config = config["development"]
+// console.log(config)
+const env = process.env.NODE_ENV || "development"; // 값이 있다면 env, 없다면 development를 불러옴  
+// "development", "production", undefined -- 명령어에 따라 
+console.log("env",env) //
+console.log("NODE_ENV",process.env.NODE_ENV) //
+
+config = config[env]  // "development" > env
 console.log("config: ",config)
 /*config:  {
   username: '-',
